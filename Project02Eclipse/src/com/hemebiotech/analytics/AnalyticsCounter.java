@@ -1,43 +1,51 @@
 package com.hemebiotech.analytics;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.util.Map;
+import java.util.TreeMap;
+
+
+/**
+ * CLASS allows you to count and classify the data in the list
+ * @author Silvio
+ *
+ */
+
 
 public class AnalyticsCounter {
-	private static int headacheCount = 0;	// initialize to 0
-	private static int rashCount = 0;		// initialize to 0
-	private static int pupilCount = 0;		// initialize to 0
+
+	Map<String, Integer> sortList = new TreeMap<String, Integer>();
 	
-	public static void main(String args[]) throws Exception {
-		// first get input
-		BufferedReader reader = new BufferedReader (new FileReader("symptoms.txt"));
-		String line = reader.readLine();
-
-		int i = 0;	// set i to 0
-		int headCount = 0;	// counts headaches
-		while (line != null) {
-			i++;	// increment i
-			System.out.println("symptom from file: " + line);
-			if (line.equals("headache")) {
-				headCount++;
-				System.out.println("number of headaches: " + headCount);
+	
+	
+/**countSymptoms method allow you to count occurrences, remove duplicates and sort alphabetically
+ * 
+ * @return a TreeMap with occurences count
+ */
+	Map<String, Integer> countSymptoms(){
+		
+		ReadSymptomDataFromFile read = new ReadSymptomDataFromFile();
+		
+		for (String list : read.readSymptoms()) {
+			
+			if (sortList.containsKey(list)) {
+				
+				sortList.replace(list, sortList.get(list) + 1);
 			}
-			else if (line.equals("rush")) {
-				rashCount++;
+			
+			else {
+				sortList.put(list, 1);
+				
 			}
-			else if (line.contains("pupils")) {
-				pupilCount++;
-			}
-
-			line = reader.readLine();	// get another symptom
+			
 		}
 		
-		// next generate output
-		FileWriter writer = new FileWriter ("result.out");
-		writer.write("headache: " + headacheCount + "\n");
-		writer.write("rash: " + rashCount + "\n");
-		writer.write("dialated pupils: " + pupilCount + "\n");
-		writer.close();
-	}
+		
+		System.out.println(sortList);
+		
+		return sortList;
+		
+
 }
+
+}
+

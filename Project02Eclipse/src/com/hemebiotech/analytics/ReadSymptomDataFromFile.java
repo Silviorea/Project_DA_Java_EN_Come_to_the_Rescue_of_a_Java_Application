@@ -1,47 +1,74 @@
 package com.hemebiotech.analytics;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Simple brute force implementation
+ * this class is used to read the symptom.txt file
+ * @author Silvio
  *
  */
-public class ReadSymptomDataFromFile implements ISymptomReader {
+public class ReadSymptomDataFromFile {
+	
+	
+	List<String> list = new ArrayList<>();
 
-	private String filepath;
+	File file = new File("Project02Eclipse//symptoms.txt");
 	
-	/**
+	
+	
+	/**extraction of the symptoms.txt file and conversion to ArrayList using the While loop in the "readSymptoms method"
 	 * 
-	 * @param filepath a full or partial path to file with symptom strings in it, one per line
+	 * @return an Arraylist with all the line of the file
 	 */
-	public ReadSymptomDataFromFile (String filepath) {
-		this.filepath = filepath;
-	}
 	
-	@Override
-	public List<String> GetSymptoms() {
-		ArrayList<String> result = new ArrayList<String>();
-		
-		if (filepath != null) {
-			try {
-				BufferedReader reader = new BufferedReader (new FileReader(filepath));
-				String line = reader.readLine();
+
+	List<String> readSymptoms() {
+
+		try {
+
+			FileReader reader = new FileReader(file);
+			BufferedReader br = new BufferedReader(reader);
+			
+			String line = br.readLine();
+			
+			while(line != null) {
+				list.add(line);
+				line = br.readLine();
 				
-				while (line != null) {
-					result.add(line);
-					line = reader.readLine();
-				}
-				reader.close();
-			} catch (IOException e) {
-				e.printStackTrace();
 			}
+			
+			System.out.println(list);
+
+			
+			reader.close();
+			br.close();
+			
 		}
 		
-		return result;
+		
+		
+
+		catch (
+
+		FileNotFoundException e) {
+			System.out.println("File not found");
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println("Unable to read File");
+			e.printStackTrace();
+		}
+		
+		
+
+		return list;
 	}
 
+
 }
+
