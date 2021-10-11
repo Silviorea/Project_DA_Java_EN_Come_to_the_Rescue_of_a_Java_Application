@@ -1,3 +1,4 @@
+covid
 fever
 dialated pupils
 dry mouth
@@ -21,6 +22,7 @@ dry mouth
 tremor
 dry mouth
 arrhythmias
+covid
 stomach pain
 anxiety
 dizziness
@@ -89,6 +91,7 @@ fever
 dry mouth
 fever
 high blood pressure
+covid
 stiff neck
 dialated pupils
 cough
@@ -98,3 +101,4 @@ anxiety
 anxiety
 cough
 blurred vision
+covid

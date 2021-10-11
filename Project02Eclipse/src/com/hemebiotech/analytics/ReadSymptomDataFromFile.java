@@ -10,23 +10,22 @@ import java.util.List;
 
 /**
  * this class is used to read the symptom.txt file
+ * 
  * @author Silvio
  *
  */
 public class ReadSymptomDataFromFile {
-	
-	
+
 	List<String> list = new ArrayList<>();
 
 	File file = new File("Project02Eclipse//symptoms.txt");
-	
-	
-	
-	/**extraction of the symptoms.txt file and conversion to ArrayList using the While loop in the "readSymptoms method"
+
+	/**
+	 * extraction of the symptoms.txt file and conversion to ArrayList using the
+	 * While loop in the "readSymptoms method"
 	 * 
-	 * @return an Arraylist with all the line of the file
+	 * @return an Arraylist with all the lines of the file
 	 */
-	
 
 	List<String> readSymptoms() {
 
@@ -34,25 +33,21 @@ public class ReadSymptomDataFromFile {
 
 			FileReader reader = new FileReader(file);
 			BufferedReader br = new BufferedReader(reader);
-			
+
 			String line = br.readLine();
-			
-			while(line != null) {
+
+			while (line != null) {
 				list.add(line);
 				line = br.readLine();
-				
+
 			}
-			
+
 			System.out.println(list);
 
-			
 			reader.close();
 			br.close();
-			
+
 		}
-		
-		
-		
 
 		catch (
 
@@ -63,12 +58,8 @@ public class ReadSymptomDataFromFile {
 			System.out.println("Unable to read File");
 			e.printStackTrace();
 		}
-		
-		
 
 		return list;
 	}
 
-
 }
-
